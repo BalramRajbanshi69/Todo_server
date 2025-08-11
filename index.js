@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5000;
 
 // middleware
 app.use(cors({
-    origin:["https://todo-task-app-indol.vercel.app"],
+    origin:["https://todo-task-app-indol.vercel.app","http://localhost:5173"],
     methods:["GET","POST","PATCH","PUT","DELETE"],
     credentials:true
 }));
@@ -23,9 +23,12 @@ app.get("/",(req,res)=>{
 })
 
 
+const authRoute = require("./routes/Auth")
+const taskRoute = require("./routes/Task_route")
+
 // api
-app.use("/api/auth",require("./routes/Auth"));
-app.use("/api/task",require("./routes/Task_route"));
+app.use("/api/auth",authRoute);
+app.use("/api/task",taskRoute);
 
 
 
